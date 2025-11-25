@@ -1,0 +1,23 @@
+﻿@page "/input-text-reverser"
+@rendermode InteractiveServer
+
+<PageTitle>Input Text Reverser</PageTitle>
+
+<h3>Input Text Reverser</h3>
+
+<p role="status">Enter your message here:</p>
+<InputText type="text" Value="@OriginalText" ValueExpression="() => OriginalText" ValueChanged="ReverseText" />
+
+<p role="status">Your reversed message is:</p>
+<InputText type="text" Value="@ReversedText" ValueExpression="() => ReversedText" readonly />
+
+@code {
+    private string OriginalText { get; set; } = string.Empty;
+    private string ReversedText { get; set; } = string.Empty;
+
+    private void ReverseText(string inputText)
+    {
+        OriginalText = inputText;
+        ReversedText = new string(inputText.Reverse().ToArray());
+    }
+}
